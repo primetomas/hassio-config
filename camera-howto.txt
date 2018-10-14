@@ -1,0 +1,56 @@
+Good hints to get cmaera snapshots to work:
+https://community.home-assistant.io/t/camera-snapshot-entity-id-in-filename/31697
+
+My config in configuration.yaml
+camera:
+  - platform: ffmpeg
+    input: /dev/video0
+  - platform: ffmpeg
+    input: /dev/video1
+  - platform: local_file
+    name: Cam1 pic
+    file_path: /tmp/snapshot_camera.ffmpeg.jpg
+  - platform: local_file
+    name: Cam2 pic
+    file_path: /tmp/snapshot_camera.ffmpeg_2.jpg
+
+
+My config in groups.yaml
+mycameras:
+  name: Cameras
+  view: no
+  entities:
+  - camera.ffmpeg
+  - camera.ffmpeg_2
+mypics:
+  name: Pics
+  view: no
+  entities:
+  - camera.local_file
+  - camera.local_file_2
+
+To make a snapshot, use the Services Developer tool and select Service "camera.snapshot", select the entity in the drop-down, and use some of the below JSON to make the snapshot.
+
+{
+"entity_id": "camera.ffmpeg_2",
+"filename": "/tmp/snapshot_camera.ffmpeg_2.jpg"
+}
+
+{
+"entity_id": "camera.ffmpeg",
+"filename": "/tmp/snapshot_camera.ffmpeg.jpg"
+}
+
+
+Possible hint for making an actiona out of it, the goal to take a snapshot when there is motion for example.
+
+action:
+  service: camera.snapshot
+  data:
+    entity_id: camera.ffmpeg
+    filename: '/tmp/snapshot_camera.ffmpeg.png'
+    
+ - platform: local_file
+    name: Logitech pic
+    file_path: /tmp/snapshot_camera.ffmpeg.png
+    

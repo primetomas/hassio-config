@@ -1,0 +1,11 @@
+mycameras:
+  name: Cameras
+  view: no
+  entities:
+  - camera.ffmpeg
+  - camera.ffmpeg_2
+#mypics:
+#  name: Pics
+#  view: no
+#  entities:
+#  - camera.local_file

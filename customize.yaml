@@ -1,0 +1,5 @@
+camera.ffmpeg:
+  friendly_name: USB Cam1
+camera.ffmpeg_2:
+  friendly_name: USB Cam2
+
