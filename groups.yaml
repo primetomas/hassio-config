@@ -4,8 +4,9 @@ mycameras:
   entities:
   - camera.ffmpeg
   - camera.ffmpeg_2
-#mypics:
-#  name: Pics
-#  view: no
-#  entities:
-#  - camera.local_file
+mypics:
+  name: Pics
+  view: no
+  entities:
+  - camera.local_file
+  - camera.local_file_2

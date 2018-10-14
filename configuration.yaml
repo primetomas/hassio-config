@@ -2,8 +2,9 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 59.3326
-  longitude: 18.0649
+  # 59.43587 17.00197 is Sionsberg according to https://latitude.to
+  latitude: 59.43587
+  longitude: 17.00197
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 26
   # metric for Metric, imperial for Imperial
@@ -13,8 +14,8 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
   # to be able to take snapshots
-  #whitelist_external_dirs:
-  #- '/tmp'
+  whitelist_external_dirs:
+  - '/tmp'
   
 # Show links to resources in log and frontend
 introduction:
@@ -68,6 +69,10 @@ sensor:
       - temperature
       - windSpeed
       - pressure
+  - platform: haveibeenpwned
+    email: 
+      - tomas@primekey.se
+      - tomas.gustavsson@primekey.com
 
 #  - platform: random
 
@@ -76,10 +81,13 @@ camera:
     input: /dev/video0
   - platform: ffmpeg
     input: /dev/video1
-#  - platform: local_file
-#    name: Logitech pic
-#    file_path: /tmp/snapshot_camera.ffmpeg.png 
-    
+  - platform: local_file
+    name: Cam1 pic
+    file_path: /tmp/snapshot_camera.ffmpeg.jpg
+  - platform: local_file
+    name: Cam2 pic
+    file_path: /tmp/snapshot_camera.ffmpeg_2.jpg
+
 # Text to speech
 tts:
   - platform: google
